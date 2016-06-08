@@ -75,7 +75,7 @@ class Routific
 
       begin
         # Sends HTTP request to Routific API server
-        response = RestClient.post('https://api.routific.com/v1/vrp',
+        response = RestClient.post('https://api.routific.com/v1/pdp',
           data.to_json,
           'Authorization' => prefixed_token,
           content_type: :json,

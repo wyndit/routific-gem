@@ -19,5 +19,9 @@ describe RoutificApi::Vehicle do
     it "has a location name" do
       expect(way_point.location_name).to eq(Factory::WAY_POINT_LOCATION_NAME)
     end
+
+    it "has a type" do
+      expect(way_point.type).to eq(Factory::WAY_POINT_TYPE)
+    end
   end
 end

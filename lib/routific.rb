@@ -42,14 +42,14 @@ class Routific
   end
 
   # Returns the route using the previously provided visits and fleet information
-  def getRoute
+  def getRoute(route_type: "vrp")
     data = {
       visits: visits,
       fleet: fleet
     }
 
     data[:options] = options if options
-    Routific.getRoute(data, token)
+    Routific.getRoute(data, token, route_type)
   end
 
   class << self
@@ -65,7 +65,7 @@ class Routific
     # Returns the route using the specified access token, visits and fleet information
     # If no access token is provided, the default access token previously set is used
     # If the default access token either is nil or has not been set, an ArgumentError is raised
-    def getRoute(data, token = @@token)
+    def getRoute(data, token = @@token, route_type)
       if token.nil?
         raise ArgumentError, "access token must be set"
       end
@@ -75,7 +75,7 @@ class Routific
 
       begin
         # Sends HTTP request to Routific API server
-        response = RestClient.post('https://api.routific.com/v1/pdp',
+        response = RestClient.post("https://api.routific.com/v1/#{route_type}",
           data.to_json,
           'Authorization' => prefixed_token,
           content_type: :json,

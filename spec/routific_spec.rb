@@ -106,7 +106,7 @@ describe Routific do
       end
 
       it "returns a Route instance" do
-        route = routific.getRoute()
+        route = routific.getRoute(route_type: "vrp")
         expect(route).to be_instance_of(RoutificApi::Route)
       end
 
